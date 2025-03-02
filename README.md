@@ -1,7 +1,7 @@
-# Peter Pan's Calculator v1.0
+# Enrong Pan's Calculator
 
 ## Overview
-**Peter Pan's Calculator v1.0** is a web-based calculator designed to perform a wide range of mathematical operations. The calculator supports basic arithmetic, trigonometry, logarithms, percentage conversions, temperature conversions, and quadratic equation solving. It also includes graphing, geometry, and algebra modes.
+**Enrong Pan's Calculator** is a web-based calculator designed to perform a wide range of mathematical operations. The calculator supports basic arithmetic, trigonometry, logarithms, percentage conversions, temperature conversions, and quadratic equation solving. It also includes graphing, geometry, and algebra modes.
 
 This project is built using **HTML, JavaScript, and CSS**, providing an intuitive and interactive user interface.
 
