@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Peter Pan's Calculator v1.0</title>
+<link rel="stylesheet" type="text/css">
+<script type="text/javascript" src="calculator.js"></script>
+</head>
+<body>
+<div style="position:fixed;
+            top: 0;
+            left: 0;
+            width:100%;
+            height:100%;
+            min-width: 1000px;
+            z-index:-10;
+            zoom: 1;
+            background:url(background_pic.jpg) repeat-y;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center 0;
+            opacity:0.85;">
+  <input type="button" onclick="fCaution()" style="width:80px; height:33px; background-color:#DC143C;" value="使用提示">
+    <center>
+      <div id="idfCaution" style="height:1000px; width:1000px; background-color:white; opacity:0.75; display:none;">
+      <br>尊敬的VIP使用者，为了您良好的体验，请您仔细阅读以下的使用提示: 请按'确定'进入下一步<br>
+      1.本基础计算器有基本的四则运算、平方、根号、三角函数、绝对值、转换至百分比、Π值、e值、取整函数(int)、温度转换、时间显示等功能<br>
+      2.为了您使用的方便，calculator mode状态下建议您只点击按钮进行输入；graph mode状态下请用键盘输入函数表达式<br>
+      3.您可以通过点击'Calculator/Graph/Geometry/Algebra'按钮进行模式切换；画图模式下可以进行简单的函数画图并保留历史记录【包含线性函数，多次函数，三角函数，对数函数等功能】; 几何模式可计算三角形; 代数模式可解一元二次多项式<br>
+      4.函数输入范例：sin(x); log(x); 如要画多次函数图，请用*号代替次方；<br>
+      5.通过点击'data'本计算器可以为您分析一系列数字类数据并找出数据的总和、最大值、最小值和平均值(使用data模式时请点击'.'按钮以隔开数据)<br>
+      6.如使用三角函数功能时请输入角度；使用反三角函数功能时请输入弧度（请先输入数字再点击三角函数相关按钮）<br>
+      感谢您的耐心阅读，请开始使用【做得不好请多多谅解😀；操作时如有疑惑可再次点击使用提示进行查看，也欢迎您咨询本人】<br>
+      </div>
+    </center>
+  <input type="button" onclick="reload()" style="position:absolute; top:4; right:260; opacity:0.85; width:32px; height:32px; font-size:17px; background-color:#B0C4DE; opacity:0.6;" value="↺">
+  <input type="button" value="Calculator/Graph/Geometry/Algebra" onclick="hideFunction()" style="width:290px; height:33px; background-color:#B0C4DE; font-size:17px; position:absolute; top:2px; right:548px;"/>
+  <I><div id="timeShow" style="position:absolute; top:7px; right:10px; font-size:21px; color:white;"></div></I>
+  <center>
+    <center>
+      <p/>
+      <div style="font-size:45px;">
+        <I>Mediocre Calculator</I>
+      </div>
+    </center>
+    <div>
+      <div class="box" id="idShowHide" style="display:display">
+      <form action="" class="form1" name="form1">
+        <div class="header">
+          <input type="text" id="text" name="text" class="text" placeholder="Press AC to clear all" style="height:50px; width:450px; background-color:#F0F8FF; font-size:33px;"/><br>
+        <p/></div>
+        <div class="container">
+          <table class="table table-bordered text-center" style="background-color: azure;">
+            <tr>
+              <td>
+                <input id="1" style="height:57px; width:57px; font-size:15px; background-color:white;" type="button" value="1" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="2" style="height:57px; width:57px; font-size:15px; background-color:white;" type="button" value="2" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="3" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="3" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="+" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="+" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="AC" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="AC" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="Del" style="height:57px; width:57px; font-size:16px; background-color:#4169E1" type="button" value="←" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="e" style="height:57px; width:57px; font-size:17px; background-color:#4169E1" type="button" value="e" onClick="fCalculate(this.id)"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="4" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="4" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="5" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="5" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="6" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="6" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="-" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="(-)" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="sin" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="sin" onClick="trigonometry(this.id)"/>
+              </td>
+              <td>
+                <input id="asin" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="asin" onClick="trigonometry(this.id)"/>
+              </td>
+              <td>
+                <input id="Π" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="Π" onClick="fCalculate(this.id)"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="7" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="7" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="8" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="8" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="9" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="9" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="*" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="×" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="cos" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="cos" onClick="trigonometry(this.id)"/>
+              </td>
+              <td>
+                <input id="acos" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="acos" onClick="trigonometry(this.id)"/>
+              </td>
+              <td>
+                <input id="space" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="space" onClick="fSpacing()"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="." style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="." onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="0" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="0" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="/" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="÷" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="=" style="height:57px; width:57px; font-size:15px; background-color:white" type="button" value="=" onClick="fCalculate(this.id)"/>
+              </td>
+              <td>
+                <input id="tan" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="tan" onClick="trigonometry(this.id)"/>
+              </td>
+              <td>
+                <input id="atan" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="atan" onClick="trigonometry(this.id)"/>
+              </td>
+              <td>
+                <input type="button" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" onclick="fMinMax()" value="data"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="to℉" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="to℉" onClick="temperature(this.id)"/>
+              </td>
+              <td>
+                <input id="to℃" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="to℃" onClick="temperature(this.id)"/>
+              </td>
+              <td>
+                <input id="x to%" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="x to%" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+              <td>
+                <input id="%to x" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="%to x" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+          	  <td>
+                <input id="x^2" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="x²" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+              <td>
+                <input id="x^3" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="x³" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+              <td>
+                <input id="√￣" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="√￣" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="abs" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="|x|" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+              <td>
+                <input id="log" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="log" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+              <td>
+                <input id="int" style="height:57px; width:57px; font-size:15px; background-color:#4169E1" type="button" value="int" onClick="fPower_Square_Percent(this.id)"/>
+              </td>
+              <td>
+                <input id="date" style="height:57px; width:57px; font-size:18px; background-color:#4169E1" type="button" value="⏰" onClick="fDate(this.id)"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </form>
+    </div>
+  </center>
+</div>
+
+<!-- Graph Mode Section -->
+<div id="idShowHideGraph" style="display:none;">
+    <div style="position:absolute; top:0px; left:95px; width:550px; height:40px">
+      <table>
+        <tr>
+          <td>
+            <select id="functionType" onchange="onFunctionTypeChange()" style="width:120px; height:33px; font-size:13px; background-color:#B0C4DE;">
+              <option value="custom">Custom Function</option>
+              <option value="poly">Polynomial</option>
+              <option value="sin">Sine Function</option>
+              <option value="cos">Cosine Function</option>
+            </select>
+          </td>
+          <td>
+            <span id="functionInputLabel" style="font-size:15px;"></span>
+            <input type="text" id="iFunction" placeholder="Enter function (e.g., x^2 or x*x)" style="width:250px; height:32px; font-size:15px; background-color:#B0C4DE;">
+            <span id="inputEndBracket" style="font-size:15px;"></span>
+          </td>
+          <td>
+            <input type="button" onclick="draw(true)" value="Graph It!" style="width:80px; height:33px; font-size:13px; background-color:#B0C4DE;"/>
+          </td>
+          <td>
+            <input type="button" onclick="enlarge()" value="+" style="width:33px; height:33px; font-size:16px; background-color:#B0C4DE;"/>
+          </td>
+          <td>
+            <input type="button" onclick="reduce()" value="-" style="width:33px; height:33px; font-size:16px; background-color:#B0C4DE;"/>
+          </td>
+          <td>
+            <input type="button" onclick="clearGraph()" value="Clear" style="width:50px; height:33px; font-size:15px; background-color:#B0C4DE;"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div style="position:absolute; top:40px; left:95px; width:550px;">
+      <p style="font-size:14px; color:#555;">
+        Examples: x^2 (square), x^3-2*x (cubic), Math.sin(x) (sine), Math.cos(2*x) (cosine), 1/x (reciprocal)
+      </p>
+    </div>
+    <div style="position:absolute; top:80px; right:20px; width:200px; height:580px; background-color:rgba(255,255,255,0.7); border:1px solid #ccc; padding:10px; overflow-y:auto;">
+      <h3 style="margin-top:0; border-bottom:1px solid #ccc; padding-bottom:5px;">Function History</h3>
+      <div id="functionHistory"></div>
+      <button onclick="clearHistory()" style="width:100%; margin-top:10px; background-color:#B0C4DE; border:none; padding:5px; cursor:pointer;">Clear History</button>
+    </div>
+    <div style="border:1px solid #ddd; width:1400px; height:600px; overflow:hidden; position:absolute; top:80px; left:3px;">
+      <canvas id="idCanvas" style="position: relative; background-color:white; opacity:0.75" onmousedown="fMousedown(event)" onmouseup="fMouseup(event)" onmousemove="fMousemove(event)" onmouseover="fMouseover(event)" onmouseout="fMouseout(event)">
+      </canvas>
+    </div>
+  </div>
+
+<!-- Geometry Mode Section -->
+<div id="geometry" style="display:none; opacity:0.9;">
+    <div style="background-color:white; margin: 20px auto; width: 90%; max-width: 1000px; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <h2 style="text-align: center; color: #333; margin-bottom: 20px;">Triangle Calculator</h2>
+      
+      <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+        <!-- Triangle diagram container with improved SVG -->
+        <div style="width: 45%; position: relative;">
+            <div id="diagramcontainer" style="width: 100%; margin: 0 auto; position: relative;">
+              <!-- Direct SVG embedding with improved label positions -->
+              <svg width="400" height="250" viewBox="0 0 400 250" style="max-width: 100%;">
+                <polygon points="200,20 50,220 350,220" stroke="black" stroke-width="2" fill="none"/>
+                <!-- Moved B label above the vertex -->
+                <text x="200" y="10" font-family="Arial" font-size="16" text-anchor="middle">B</text>
+                <text x="40" y="230" font-family="Arial" font-size="16">A</text>
+                <text x="360" y="230" font-family="Arial" font-size="16">C</text>
+                <!-- Moved a label outside of the triangle -->
+                <text x="300" y="100" font-family="Arial" font-size="16">a</text>
+                <!-- Kept c label outside -->
+                <text x="100" y="120" font-family="Arial" font-size="16">c</text>
+                <text x="200" y="235" font-family="Arial" font-size="16">b</text>
+              </svg>
+            </div>
+            <div id="hoveroutput" style="display: none; position: absolute; padding: 0.5em; background-color: #FFFFFF; border: 1px solid #A0A0A0; border-radius: 3px; z-index: 100;"></div>
+        </div>
+  
+        <!-- Triangle input form -->
+        <div style="width: 50%;">
+          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <h3 style="margin-top: 0; color: #444;">Input Values</h3>
+            <p style="font-size: 14px; color: #666;">Enter exactly 3 values (with at least one side)</p>
+            
+            <form action="#" method="get" onsubmit="solve(); return false">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <div style="width: 48%; margin-bottom: 10px;">
+                  <label for="sideAin" style="display: block; margin-bottom: 5px;">Side a:</label>
+                  <input type="number" id="sideAin" autocomplete="off" step="any" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Length"/>
+                </div>
+                <div style="width: 48%; margin-bottom: 10px;">
+                  <label for="sideBin" style="display: block; margin-bottom: 5px;">Side b:</label>
+                  <input type="number" id="sideBin" autocomplete="off" step="any" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Length"/>
+                </div>
+                <div style="width: 48%; margin-bottom: 10px;">
+                  <label for="sideCin" style="display: block; margin-bottom: 5px;">Side c:</label>
+                  <input type="number" id="sideCin" autocomplete="off" step="any" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Length"/>
+                </div>
+                <div style="width: 48%; margin-bottom: 10px;">
+                  <label for="angleAin" style="display: block; margin-bottom: 5px;">Angle A (°):</label>
+                  <input type="number" id="angleAin" autocomplete="off" step="any" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Degrees"/>
+                </div>
+                <div style="width: 48%; margin-bottom: 10px;">
+                  <label for="angleBin" style="display: block; margin-bottom: 5px;">Angle B (°):</label>
+                  <input type="number" id="angleBin" autocomplete="off" step="any" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Degrees"/>
+                </div>
+                <div style="width: 48%; margin-bottom: 10px;">
+                  <label for="angleCin" style="display: block; margin-bottom: 5px;">Angle C (°):</label>
+                  <input type="number" id="angleCin" autocomplete="off" step="any" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Degrees"/>
+                </div>
+              </div>
+              
+              <div style="margin-top: 15px; text-align: center;">
+                <input value="Solve Triangle" style="padding: 10px 20px; background-color: #4169E1; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;" type="submit"/>
+                <input value="Clear Values" type="reset" style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-left: 10px;" onclick="clearOutputs()"/>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Results section -->
+      <div id="resultsSection" style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; margin-top: 20px; display: none;">
+        <h3 style="margin-top: 0; color: #444; text-align: center;">Results</h3>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+          <div style="width: 48%;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd;">Parameter</th>
+                <th style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;">Value</th>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Side a</td>
+                <td id="sideAout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Side b</td>
+                <td id="sideBout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Side c</td>
+                <td id="sideCout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Angle A</td>
+                <td id="angleAout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Angle B</td>
+                <td id="angleBout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Angle C</td>
+                <td id="angleCout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Area</td>
+                <td id="areaout" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+            </table>
+          </div>
+          
+          <div style="width: 48%;" id="secondSolutionContainer" class="onesoln">
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd;">Parameter</th>
+                <th style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;">Alternative Value</th>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Side a</td>
+                <td id="sideAout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Side b</td>
+                <td id="sideBout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Side c</td>
+                <td id="sideCout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Angle A</td>
+                <td id="angleAout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Angle B</td>
+                <td id="angleBout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Angle C</td>
+                <td id="angleCout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">Area</td>
+                <td id="areaout2" style="text-align: right; padding: 8px; border-bottom: 1px solid #ddd;"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        
+        <div style="margin-top: 15px; padding: 10px; background-color: #e8f4f8; border-radius: 4px;">
+          <strong>Status:</strong> <span id="status"></span>
+        </div>
+      </div>
+  
+      <!-- Information section -->
+      <div style="margin-top: 30px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
+        <h3 style="margin-top: 0; color: #444;">About Triangle Calculations</h3>
+        <p style="margin-bottom: 10px;">This calculator determines the missing sides and angles of a triangle. You must provide exactly 3 pieces of information, including at least one side.</p>
+        
+        <ul style="margin-top: 0; padding-left: 20px;">
+          <li style="margin-bottom: 5px;">All sides must be in the same unit (e.g., all in meters or all in feet).</li>
+          <li style="margin-bottom: 5px;">In a valid solution, all side lengths are positive, and all angles are between 0° and 180°.</li>
+          <li style="margin-bottom: 5px;">3 sides (SSS) yields a unique solution (or no solution if the longest side exceeds the sum of the other sides).</li>
+          <li style="margin-bottom: 5px;">2 angles and a side (ASA) yields a unique solution if the angles sum to less than 180°.</li>
+          <li style="margin-bottom: 5px;">2 sides and an enclosed angle (SAS) yields a unique solution.</li>
+          <li style="margin-bottom: 5px;">2 sides and a non-enclosed angle (SSA) may yield 0, 1, or 2 solutions.</li>
+        </ul>
+        
+        <p style="font-style: italic; color: #666; margin-top: 10px;">Tip: Click on a letter in the triangle diagram to jump to that input field.</p>
+      </div>
+    </div>
+  </div>
+
+<!-- Algebra Mode Section - Improved Quadratic Solver -->
+<div id="algebra" style="display:none;">
+    <div style="background-color:white; margin: 20px auto; width: 90%; max-width: 800px; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <h2 style="text-align: center; color: #333; margin-bottom: 20px;">Quadratic Equation Solver</h2>
+      
+      <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <h3 style="margin-top: 0; color: #444;">Instructions</h3>
+        <p>Enter the coefficients for your quadratic equation in the standard form: ax² + bx + c = 0</p>
+        <ul>
+          <li>For example, to solve x² - 5x + 6 = 0, enter a=1, b=-5, c=6</li>
+          <li>For 2x² + 4x - 3 = 0, enter a=2, b=4, c=-3</li>
+          <li>The solver will find both real and complex solutions</li>
+        </ul>
+      </div>
+      
+      <form name="fquad" onsubmit="checkQuad(); return false;">
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center;">
+            <div style="display: flex; align-items: center; margin: 0 5px;">
+              <input name="fa" type="number" step="any" placeholder="a" style="width:60px; height:40px; font-size:18px; text-align:center; border:1px solid #ccc; border-radius:4px;"/>
+              <span style="font-size:20px; margin:0 5px;">x²</span>
+            </div>
+            <div style="display: flex; align-items: center; margin: 0 5px;">
+              <span style="font-size:20px; margin-right:5px;">+</span>
+              <input name="fb" type="number" step="any" placeholder="b" style="width:60px; height:40px; font-size:18px; text-align:center; border:1px solid #ccc; border-radius:4px;"/>
+              <span style="font-size:20px; margin:0 5px;">x</span>
+            </div>
+            <div style="display: flex; align-items: center; margin: 0 5px;">
+              <span style="font-size:20px; margin-right:5px;">+</span>
+              <input name="fc" type="number" step="any" placeholder="c" style="width:60px; height:40px; font-size:18px; text-align:center; border:1px solid #ccc; border-radius:4px;"/>
+            </div>
+            <div style="display: flex; align-items: center; margin: 0 5px;">
+              <span style="font-size:20px; margin:0 5px;">=</span>
+              <span style="font-size:20px;">0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+          <button type="submit" style="padding: 10px 20px; background-color: #4169E1; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-right: 10px;">Solve Equation</button>
+          <button type="reset" style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Clear Values</button>
+        </div>
+      </form>
+      
+      <div id="quadratic-results" style="background-color: #f0f8ff; padding: 20px; border-radius: 5px; margin-top: 20px; display: none;">
+        <h3 style="margin-top: 0; color: #444; text-align: center;">Results</h3>
+        
+        <div style="margin-top: 15px; display: flex; flex-direction: column; align-items: center;">
+          <div style="margin-bottom: 10px; width: 100%; max-width: 400px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+              <span style="font-weight: bold;">First Solution (x₁):</span>
+              <span id="x1-display" style="font-family: monospace; font-size: 16px;"></span>
+            </div>
+            <input id="x1" name="x1" type="text" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; margin-bottom: 10px;" readonly/>
+          </div>
+          
+          <div style="margin-bottom: 10px; width: 100%; max-width: 400px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+              <span style="font-weight: bold;">Second Solution (x₂):</span>
+              <span id="x2-display" style="font-family: monospace; font-size: 16px;"></span>
+            </div>
+            <input id="x2" name="x2" type="text" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" readonly/>
+          </div>
+        </div>
+        
+        <div id="solution-explanation" style="margin-top: 20px; padding: 10px; background-color: #e8f4f8; border-radius: 4px;">
+          <p id="equation-display" style="font-weight: bold; margin-bottom: 10px;"></p>
+          <p id="solution-note"></p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 30px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
+        <h3 style="margin-top: 0; color: #444;">About Quadratic Equations</h3>
+        <p>A quadratic equation has the form ax² + bx + c = 0, where a, b, and c are constants and a ≠ 0.</p>
+        <p>The solutions are given by the quadratic formula:</p>
+        <div style="text-align: center; margin: 15px 0; font-size: 18px;">
+          x = (-b ± √(b² - 4ac)) / (2a)
+        </div>
+        <p>Where:</p>
+        <ul>
+          <li>If b² - 4ac > 0, there are two distinct real solutions</li>
+          <li>If b² - 4ac = 0, there is one repeated real solution</li>
+          <li>If b² - 4ac < 0, there are two complex solutions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
